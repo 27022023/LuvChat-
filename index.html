@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>LuvChat</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      overflow: hidden;
+      position: relative;
+      color: #ffffff;
+    }
+
+    /* Background gradient: lilac, baby blue, baby pink */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(circle at top left, #e3b8ff 0, transparent 50%),
+                  radial-gradient(circle at top right, #b8d9ff 0, transparent 50%),
+                  radial-gradient(circle at bottom, #ffbfd6 0, transparent 55%);
+      background-color: #f7e9ff;
+      z-index: -1;
+    }
+
+    /* Centered hero content */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 20px;
+    }
+
+    /* MASSIVE LuvChat logo */
+    .logo {
+      font-family: "Brush Script MT", "Lucida Handwriting", cursive;
+      font-size: 18vw; /* HUGE — scales with screen width */
+      color: #ffffff;
+      text-shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
+      margin-bottom: 40px;
+      line-height: 1;
+    }
+
+    /* Menu button */
+    .menu-button {
+      padding: 14px 34px;
+      border-radius: 999px;
+      border: none;
+      background: rgba(255, 255, 255, 0.9);
+      color: #7b5ba8;
+      font-size: 1.2rem;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.15);
+      transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+    }
+
+    .menu-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+      background: #ffffff;
+    }
+
+    /* Slide-down menu panel */
+    .menu-panel {
+      margin-top: 18px;
+      padding: 16px 20px;
+      border-radius: 18px;
+      background: #ffc2da; /* pinky colour */
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
+      display: none;
+      flex-direction: column;
+      gap: 10px;
+      min-width: 220px;
+    }
+
+    .menu-panel.open {
+      display: flex;
+    }
+
+    .menu-item {
+      padding: 10px 16px;
+      border-radius: 999px;
+      border: none;
+      background: rgba(255, 255, 255, 0.95);
+      color: #7b5ba8;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      text-align: center;
+      transition: background 0.15s ease, transform 0.15s ease;
+    }
+
+    .menu-item:hover {
+      background: #ffe6f1;
+      transform: translateY(-1px);
+    }
+  </style>
+</head>
+<body>
+
+  <main class="hero">
+    <h1 class="logo">LuvChat</h1>
+
+    <button id="menuButton" class="menu-button">Menu</button>
+
+    <div id="menuPanel" class="menu-panel">
+      <button class="menu-item">Chat</button>
+      <button class="menu-item">Phone call</button>
+      <button class="menu-item">FaceTime call</button>
+      <button class="menu-item">Posts</button>
+    </div>
+  </main>
+
+  <script>
+    const menuButton = document.getElementById("menuButton");
+    const menuPanel = document.getElementById("menuPanel");
+
+    menuButton.addEventListener("click", () => {
+      menuPanel.classList.toggle("open");
+    });
+  </script>
+
+</body>
+</html>

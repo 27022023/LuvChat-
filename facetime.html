@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>LuvChat – FaceTime</title>
+
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; font-family: Arial; }
+
+  body {
+    background: #FFF4E3; /* pastel creamy */
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Header */
+  .header {
+    background: #FFE8CC;
+    padding: 18px;
+    text-align: center;
+    font-size: 1.6rem;
+    font-weight: bold;
+    color: #7b5ba8;
+    position: relative;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  }
+
+  /* Back button */
+  .back-btn {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #ffffff;
+    color: #7b5ba8;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 999px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  }
+
+  /* Contact list */
+  .section-title {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: #7b5ba8;
+    margin: 16px 0 8px 16px;
+  }
+
+  .contact-list {
+    flex: 1;
+    overflow-y: auto;
+    padding: 10px 16px;
+  }
+
+  .contact-item {
+    background: white;
+    padding: 14px;
+    margin-bottom: 12px;
+    border-radius: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  }
+
+  .contact-name {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #7b5ba8;
+  }
+
+  .ft-icon {
+    font-size: 1.4rem;
+    cursor: pointer;
+  }
+
+  /* Camera preview */
+  .camera-box {
+    width: 90%;
+    height: 260px;
+    background: #ffffff;
+    border-radius: 20px;
+    margin: 20px auto;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #7b5ba8;
+    font-size: 1.2rem;
+  }
+
+  /* Filters */
+  .filters {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+
+  .filter-btn {
+    padding: 10px 16px;
+    background: #ffffff;
+    border-radius: 999px;
+    border: none;
+    color: #7b5ba8;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  }
+
+  /* Start call button */
+  .start-btn {
+    background: #7b5ba8;
+    color: white;
+    padding: 14px 20px;
+    border-radius: 999px;
+    border: none;
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+    width: 90%;
+    margin: 0 auto 20px auto;
+    display: block;
+  }
+
+  /* Call overlay */
+  .overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.55);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 2rem;
+    font-weight: bold;
+  }
+</style>
+</head>
+
+<body>
+
+<div class="header">
+  <button class="back-btn" onclick="location.href='index.html'">← Menu</button>
+  FaceTime 📹
+</div>
+
+<div class="section-title">Saved Contacts</div>
+<div class="contact-list" id="contactList"></div>
+
+<div class="camera-box" id="cameraBox">
+  Camera Preview Off
+</div>
+
+<div class="filters">
+  <button class="filter-btn" onclick="setFilter('none')">Normal</button>
+  <button class="filter-btn" onclick="setFilter('brightness(1.3)')">Bright ✨</button>
+  <button class="filter-btn" onclick="setFilter('contrast(1.4)')">Contrast 💫</button>
+  <button class="filter-btn" onclick="setFilter('sepia(0.6)')">Vintage 📼</button>
+</div>
+
+<button class="start-btn" onclick="startFaceTime()">Start FaceTime</button>
+
+<div class="overlay" id="overlay">Connecting…</div>
+
+<script>
+  let contacts = JSON.parse(localStorage.getItem("luvchat_contacts") || "[]");
+
+  function renderContacts() {
+    const list = document.getElementById("contactList");
+    list.innerHTML = "";
+
+    contacts.forEach(contact => {
+      const item = document.createElement("div");
+      item.classList.add("contact-item");
+
+      item.innerHTML = `
+        <div class="contact-name">${contact.name}</div>
+        <div class="ft-icon" onclick="call('${contact.name}')">📹</div>
+      `;
+
+      list.appendChild(item);
+    });
+  }
+
+  function call(name) {
+    const overlay = document.getElementById("overlay");
+    overlay.style.display = "flex";
+    overlay.textContent = "Calling " + name + "…";
+
+    setTimeout(() => {
+      overlay.textContent = "Connecting…";
+    }, 1500);
+
+    setTimeout(() => {
+      overlay.style.display = "none";
+      alert("FaceTime with " + name + " started!");
+    }, 3000);
+  }
+
+  function startFaceTime() {
+    const overlay = document.getElementById("overlay");
+    overlay.style.display = "flex";
+    overlay.textContent = "Connecting…";
+
+    setTimeout(() => {
+      overlay.style.display = "none";
+      alert("FaceTime started!");
+    }, 2500);
+  }
+
+  function setFilter(filter) {
+    document.getElementById("cameraBox").style.filter = filter;
+  }
+
+  renderContacts();
+</script>
+
+</body>
+</html>

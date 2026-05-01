@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <title>LuvChat</title>
+
   <style>
     * {
       margin: 0;
@@ -18,21 +19,16 @@
       color: #ffffff;
     }
 
-    /* Background gradient: lilac, baby blue, baby pink */
+    /* Cotton candy gradient */
     body::before {
       content: "";
       position: fixed;
       inset: 0;
-      background: radial-gradient(circle at top left, #e3b8ff 0, transparent 50%),
-                  radial-gradient(circle at top right, #b8d9ff 0, transparent 50%),
-                  radial-gradient(circle at bottom, #ffbfd6 0, transparent 55%);
-      background-color: #f7e9ff;
+      background: linear-gradient(135deg, #FFB6E9, #AEE6FF);
       z-index: -1;
     }
 
-    /* Centered hero content */
     .hero {
-      position: relative;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
@@ -42,24 +38,24 @@
       padding: 20px;
     }
 
-    /* EVEN BIGGER LuvChat logo */
+    /* BIGGER LOGO */
     .logo {
       font-family: "Brush Script MT", "Lucida Handwriting", cursive;
-      font-size: 22vw; /* HUGE */
+      font-size: 26vw;
       color: #ffffff;
       text-shadow: 0 10px 40px rgba(0, 0, 0, 0.35);
-      margin-bottom: 50px;
+      margin-bottom: 60px;
       line-height: 1;
     }
 
-    /* Bigger Menu button */
+    /* BIGGER MENU BUTTON */
     .menu-button {
-      padding: 20px 50px;
+      padding: 28px 70px;
       border-radius: 999px;
       border: none;
       background: rgba(255, 255, 255, 0.95);
       color: #7b5ba8;
-      font-size: 1.6rem;
+      font-size: 2rem;
       font-weight: 700;
       cursor: pointer;
       box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
@@ -71,31 +67,31 @@
       background: #ffffff;
     }
 
-    /* Bigger Menu panel */
+    /* BIGGER MENU PANEL */
     .menu-panel {
-      margin-top: 25px;
-      padding: 25px 30px;
-      border-radius: 25px;
+      margin-top: 35px;
+      padding: 35px 40px;
+      border-radius: 30px;
       background: #ffc2da;
       box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
       display: none;
       flex-direction: column;
-      gap: 18px;
-      min-width: 260px;
+      gap: 25px;
+      min-width: 300px;
     }
 
     .menu-panel.open {
       display: flex;
     }
 
-    /* Bigger menu items */
+    /* BIGGER MENU ITEMS */
     .menu-item {
-      padding: 16px 20px;
+      padding: 22px 25px;
       border-radius: 999px;
       border: none;
       background: rgba(255, 255, 255, 0.95);
       color: #7b5ba8;
-      font-size: 1.3rem;
+      font-size: 1.7rem;
       font-weight: 700;
       cursor: pointer;
       text-align: center;
@@ -105,6 +101,31 @@
     .menu-item:hover {
       background: #ffe6f1;
       transform: translateY(-2px);
+    }
+
+    /* Floating settings button */
+    .settings-btn {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background: #ffffff;
+      color: #7b5ba8;
+      font-size: 2.4rem;
+      border: none;
+      border-radius: 50%;
+      width: 80px;
+      height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+      transition: 0.2s ease;
+    }
+
+    .settings-btn:hover {
+      transform: scale(1.1);
+      background: #f7e9ff;
     }
   </style>
 </head>
@@ -118,11 +139,15 @@
 
     <div id="menuPanel" class="menu-panel">
       <button class="menu-item" onclick="location.href='chatlist.html'">Chat</button>
-      <button class="menu-item" onclick="location.href='call.html'">Phone call</button>
-      <button class="menu-item" onclick="location.href='facetime.html'">FaceTime call</button>
-      <button class="menu-item" onclick="location.href='posts.html'">Posts</button>
+      <button class="menu-item" onclick="location.href='call.html'">Phone Call</button>
+      <button class="menu-item" onclick="location.href='facetime.html'">FaceTime</button>
+      <button class="menu-item" onclick="location.href='chatbot.html'">LuvBot 🤖💗</button>
+      
     </div>
   </main>
+
+  <!-- Floating settings button -->
+  <button class="settings-btn" onclick="location.href='settings.html'">⚙️</button>
 
   <script>
     const menuButton = document.getElementById("menuButton");
